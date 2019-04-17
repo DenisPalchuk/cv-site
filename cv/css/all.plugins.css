@@ -1,20 +1,20 @@
 /* animation */
 
-@import "animate.min.css";
+@import url("/css/animate.min.css");
 /* bootstrap */
 
-@import "bootstrap.min.css";
+@import url("/css/bootstrap.min.css");
 /* font-awesome icon */
 
-@import "font-awesome.min.css";
+@import url("/css/font-awesome.min.css");
 /* magnific popup */
 
-@import "magnific-popup.min.css";
+@import url("/css/magnific-popup.min.css");
 /* cube Portfolio */
 
-@import "jquery.fancybox.min.css";
+@import url("/css/jquery.fancybox.min.css");
 /* owl carousel */
 
-@import "owl.carousel.min.css";
-@import "owl.theme.default.min.css";
+@import url("/css/owl.carousel.min.css");
+@import url("/css/owl.theme.default.min.css");
 /* Swiper CSS File */
