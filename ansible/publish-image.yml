@@ -1,0 +1,20 @@
+- name: Building image
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: login to docker registry
+      docker_login:
+        username: "{{ docker_username }}"
+        password: "{{ docker_password }}"
+        state: present
+        registry_url: "{{ docker_registry_url }}"
+
+    - name: build an image and push to registry
+      docker_image:
+        name: "{{ docker_registry_url }}/denispalchuk/cv-site/cv-site-image"
+        tag: latest
+        build: 
+            path: ../
+        push: yes
+        source: build
+    

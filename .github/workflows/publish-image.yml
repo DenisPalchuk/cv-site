@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/ansible-playbook-docker-action@2.8.5
+    - with:
+        playbookName: './ansible/simple-playbook.yml'
+        requirementsFile: ".ansible/requirements.yml"
+        extraVars: "-e docker_username=${{ secrets.DOCKER_USERNAME }} -e docker_password=${{ secrets.DOCKER_PASSWORD }}"
