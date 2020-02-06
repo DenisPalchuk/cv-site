@@ -12,5 +12,5 @@ jobs:
         - name: Publish docker image 
           uses: saubermacherag/ansible-playbook-docker-action@v1.2
           with:
-            playbookName: './ansible/simple-playbook.yml'
+            playbookName: '../ansible/publish-image.yml'
             extraVars: "-e docker_username=${{ secrets.DOCKER_USERNAME }} -e docker_password=${{ secrets.DOCKER_PASSWORD }}"
