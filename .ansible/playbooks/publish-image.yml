@@ -14,7 +14,7 @@
         name: "{{ docker_registry_url }}/denispalchuk/cv-site/cv-site-image"
         tag: latest
         build: 
-            path: ../
+            path: ../../
         push: yes
         source: build
     
