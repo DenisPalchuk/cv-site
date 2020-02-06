@@ -10,7 +10,7 @@ jobs:
 
     steps:
         - name: Publish docker image 
-          uses: actions/ansible-playbook-docker-action@v1.2
+          uses: saubermacherag/ansible-playbook-docker-action@v1.2
           with:
             playbookName: './ansible/simple-playbook.yml'
             requirementsFile: ".ansible/requirements.yml"
