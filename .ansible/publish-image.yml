@@ -3,6 +3,15 @@
   connection: local
   gather_facts: no
   tasks:
+    - apt:
+      state: latest
+      name: python-pip
+  
+    - pip:
+      name: 
+        - docker
+        - requests>=2.20.1
+
     - name: login to docker registry
       docker_login:
         username: "{{ docker_username }}"
