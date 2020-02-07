@@ -26,9 +26,6 @@ jobs:
           run: 
             - echo "${{ secrets.SSH_PRIVATE_KEY }}" >> /github/home/key.pem 
             - chmod 700 /github/home/key.pem 
-          
-        - name: Test ssh-agent
-          run: 
         
         - name: Pulling docker image 
           uses: saubermacherag/ansible-playbook-docker-action@v1.2
