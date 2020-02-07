@@ -5,10 +5,7 @@
   tasks:
     - name: install python pip
       become: yes
-      apt:
-        force_apt_get: yes
-        pkg: 
-        - python-pip
+      shell: apt-get install -y python-pip
   
     - name: Install docker module to python
       pip:
