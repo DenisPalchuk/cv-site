@@ -24,7 +24,8 @@ jobs:
         
         - name: Add private key to ssh-agent
           run: |
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" >> /github/home/key.pem 
+            touch /github/home/key.pem
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" >> /github/home/key.pem
             chmod 700 /github/home/key.pem 
         
         - name: Pulling docker image 
