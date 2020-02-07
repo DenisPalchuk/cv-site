@@ -3,11 +3,16 @@
   connection: local
   gather_facts: no
   tasks:
-    - apt:
+    - name: install python pip
+      become: yes
+      apt:
+        force_apt_get: yes
         pkg: 
         - python-pip
   
-    - pip:
+    - name: Install docker module to python
+      pip:
+        become: yes
         name:
           - docker
           - requests>=2.20.1
