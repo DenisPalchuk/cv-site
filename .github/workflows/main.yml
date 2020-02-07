@@ -23,9 +23,9 @@ jobs:
         - uses: actions/checkout@v1
         
         - name: Add private key to ssh-agent
-          run: 
-            - echo "${{ secrets.SSH_PRIVATE_KEY }}" >> /github/home/key.pem 
-            - chmod 700 /github/home/key.pem 
+          run: |
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" >> /github/home/key.pem 
+            chmod 700 /github/home/key.pem 
         
         - name: Pulling docker image 
           uses: saubermacherag/ansible-playbook-docker-action@v1.2
