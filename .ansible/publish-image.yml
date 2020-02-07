@@ -4,8 +4,8 @@
   gather_facts: no
   tasks:
     - name: Install docker module to python
+      become: yes  
       pip:
-        become: yes
         name:
           - docker
           - requests>=2.20.1
