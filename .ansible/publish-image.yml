@@ -1,5 +1,6 @@
 - name: Building image
   hosts: localhost
+  connection: local
   gather_facts: no
   tasks:
     - name: login to docker registry
