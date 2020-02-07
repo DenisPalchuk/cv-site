@@ -1,0 +1,35 @@
+name: Publish Docker image
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v1
+        - name: Publish docker image 
+          uses: saubermacherag/ansible-playbook-docker-action@v1.2
+          with:
+            playbookName: '.ansible/publish-image.yml'
+            extraVars: "-e docker_username=${{ secrets.DOCKER_USERNAME }} -e docker_password=${{ secrets.DOCKER_PASSWORD }}"
+  
+  deploy:
+
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v1
+        
+        - name: Add private key to ssh-agent
+          uses: webfactory/ssh-agent@v0.2.0
+          with: 
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+        - name: Pulling docker image 
+          uses: saubermacherag/ansible-playbook-docker-action@v1.2
+          with:
+            playbookName: '.ansible/upload-to-server.yml'
+            inventoryFile: '.ansible/production/inventory.yml'
+            extraVars: "-e docker_username=${{ secrets.DOCKER_USERNAME }} -e docker_password=${{ secrets.DOCKER_PASSWORD }}" 

@@ -1,0 +1,20 @@
+- name: Upload image to server
+  hosts: app
+  tasks:
+    - name: Install pip3
+      apt:
+        name: python3-pip
+
+    - name: Install docker module to python
+      pip:
+        name:
+        - docker
+        - requests>=2.20.1
+
+    - name: login to docker registry
+      docker_login:
+        username: "{{ docker_username }}"
+        password: "{{ docker_password }}"
+        state: present
+        registry_url: "{{ docker_registry_url }}"
+    
