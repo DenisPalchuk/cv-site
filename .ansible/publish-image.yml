@@ -3,10 +3,6 @@
   connection: local
   gather_facts: no
   tasks:
-    - name: install python pip
-      become: yes
-      shell: apt-get install -y python-pip
-  
     - name: Install docker module to python
       pip:
         become: yes
