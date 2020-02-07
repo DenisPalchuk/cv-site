@@ -24,7 +24,7 @@ jobs:
         
         - name: Add private key to ssh-agent
           run: |
-            touch $HOME/key.pem
+            touch ./key.pem
             echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ./key.pem
             chmod 700 ./key.pem 
         
