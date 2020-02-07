@@ -17,4 +17,22 @@
         password: "{{ docker_password }}"
         state: present
         registry_url: "{{ docker_registry_url }}"
+    - name: pulling docker image from registry
+      docker_image:
+          name: "{{ docker_registry_url }}/denispalchuk/cv-site/cv-site-image"
+          tag: latest
+          build: 
+              path: ../
+              pull: yes
+          source: build
+    - name: Run App container
+      docker_container:
+        name: cs-site
+        pull: yes
+        recreate: yes
+        image: "{{{ docker_registry_url }}/denispalchuk/cv-site/cv-site-image:latest"
+        state: started
+        restart_policy: always
+        ports:
+          - "80:80"
     
