@@ -7,7 +7,7 @@ fi
 
 domains=(palchukdenis.com www.palchukdenis.com)
 rsa_key_size=4096
-data_path="./data/certbot"
+data_path="./letsencrypt/certbot"
 email="palchukdenis@gmail.com" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
@@ -71,3 +71,4 @@ echo
 
 echo "### Reloading nginx ..."
 docker-compose exec nginx nginx -s reload
+exit 0

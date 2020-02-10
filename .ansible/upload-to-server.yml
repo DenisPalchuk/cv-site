@@ -32,12 +32,31 @@
         stopped: yes
 
 
-    - name: add executable rights for generating fake certs file
-      file:
-        path: ~/cv-site/init-letsencrypt.sh
-        mode: +x
+    # - name: add executable rights for generating fake certs file
+    #   file:
+    #     path: ~/cv-site/init-letsencrypt.sh
+    #     mode: +x
 
-    - name: Start script for generating fake certs
-      shell: 
-        cmd: ~/cv-site/init-letsencrypt.sh
+    # - name: Start script for generating fake certs
+    #   shell: 
+    #     cmd: ~/cv-site/init-letsencrypt.sh
+    #     chdir: ~/cv-site
+
+    # Docker-compose module doesn't support adhoc running so it's just a workaround
+    - name: Creating dummy certificate for palchukdenis.com
+      shell:
+        cmd: docker-compose run --rm --entrypoint "\
+          openssl req -x509 -nodes -newkey rsa:1024 -days 1\
+          -keyout '/etc/letsencrypt/live/palchukdenis.com/privkey.pem' \
+          -out '/etc/letsencrypt/live/palchukdenis.com/fullchain.pem' \
+          -subj '/CN=localhost'" certbot
         chdir: ~/cv-site
+
+    - name: Starting nginx
+      docker-compose:
+        services:
+          - nginx
+        project_src: ~/cv-site
+        recreate: always
+
+
