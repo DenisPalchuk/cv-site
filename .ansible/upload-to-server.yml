@@ -54,4 +54,30 @@
         project_src: ~/cv-site
         recreate: always
 
+    - name: Deleting dummy certificate for palchukdenis.com
+      shell:
+        cmd: >
+          docker-compose run --rm --entrypoint 
+          "rm -Rf /etc/letsencrypt/live/palchukdenis.com && 
+          rm -Rf /etc/letsencrypt/archive/palchukdenis.com && 
+          rm -Rf /etc/letsencrypt/renewal/palchukdenis.com.conf" certbot
+        chdir: ~/cv-site
+
+    - name: Requesting Let's Encrypt certificate for palchukdenis.com
+      shell:
+        cmd: >
+          docker-compose run --rm --entrypoint 
+          "certbot certonly --webroot -w /var/www/certbot 
+          --email {{ email }}  
+          -d palchukdenis.com 
+          --rsa-key-size 4096 
+          --agree-tos 
+          --force-renewal" certbot
+        chdir: ~/cv-site
+    
+    - name: Reload nginx
+      shell:
+        cmd: docker-compose exec nginx nginx -s reload
+          
+
 
