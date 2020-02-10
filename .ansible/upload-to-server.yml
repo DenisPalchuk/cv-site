@@ -31,17 +31,6 @@
         state: absent
         stopped: yes
 
-
-    # - name: add executable rights for generating fake certs file
-    #   file:
-    #     path: ~/cv-site/init-letsencrypt.sh
-    #     mode: +x
-
-    # - name: Start script for generating fake certs
-    #   shell: 
-    #     cmd: ~/cv-site/init-letsencrypt.sh
-    #     chdir: ~/cv-site
-
     # Docker-compose module doesn't support adhoc running so it's just a workaround
     - name: Creating dummy certificate for palchukdenis.com
       shell:
@@ -53,7 +42,7 @@
         chdir: ~/cv-site
 
     - name: Starting nginx
-      docker-compose:
+      docker_compose:
         services:
           - nginx
         project_src: ~/cv-site
