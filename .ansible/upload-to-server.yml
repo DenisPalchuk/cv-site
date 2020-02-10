@@ -25,6 +25,13 @@
         dest: ~/cv-site
         force: yes
 
+    - name: Stop old nginx and let's encrypt container
+      docker_compose:
+        project_src: ~/cv-site
+        state: absent
+        stopped: yes
+
+
     - name: add executable rights for generating fake certs file
       file:
         path: ~/cv-site/init-letsencrypt.sh
@@ -34,14 +41,3 @@
       shell: 
         cmd: ~/cv-site/init-letsencrypt.sh
         chdir: ~/cv-site
-
-    - name: Stop old nginx and let's encrypt container
-      docker_compose:
-        project_src: ~/cv-site
-        state: absent
-        stopped: yes
-
-
-    - name: Run App container
-      docker_compose:
-        project_src: ~/cv-site
