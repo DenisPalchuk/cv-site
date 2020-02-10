@@ -4,18 +4,6 @@ on: [push]
 
 jobs:
 
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-        - uses: actions/checkout@v1
-        - name: Publish docker image 
-          uses: saubermacherag/ansible-playbook-docker-action@v1.2
-          with:
-            playbookName: '.ansible/publish-image.yml'
-            extraVars: "-e docker_username=${{ secrets.DOCKER_USERNAME }} -e docker_password=${{ secrets.DOCKER_PASSWORD }}"
-  
   deploy:
 
     runs-on: ubuntu-latest
@@ -28,7 +16,7 @@ jobs:
             echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ./key.pem
             chmod 700 ./key.pem 
         
-        - name: Pulling docker image 
+        - name: Setting up services by docker-compose 
           uses: saubermacherag/ansible-playbook-docker-action@v1.2
           with:
             playbookName: '.ansible/upload-to-server.yml'

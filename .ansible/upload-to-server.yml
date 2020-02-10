@@ -1,31 +1,23 @@
 - name: Upload image to server
   hosts: app
   tasks:
-    - name: Install pip3
+    - name: Install git and pip3
       apt:
-        name: python3-pip
+        name: git python3-pip
 
     - name: Install docker module to python
       pip:
         name:
         - docker
+        - docker-compose
         - requests>=2.20.1
 
-    - name: login to docker registry
-      docker_login:
-        username: "{{ docker_username }}"
-        password: "{{ docker_password }}"
-        state: present
-        registry_url: "{{ docker_registry_url }}"
+    - name: clone repo from git
+      git:
+        repo: 'https://github.com/DenisPalchuk/cv-site.git'
+        dest: ~/
+      
     
     - name: Run App container
-      docker_container:
-        name: cs-site
-        pull: yes
-        recreate: yes
-        image: "{{ docker_registry_url }}/denispalchuk/cv-site/cv-site-image:latest"
-        state: started
-        restart_policy: always
-        ports:
-          - "80:80"
-    
+      docker-_compose:
+        project_src: ~/cv-site
