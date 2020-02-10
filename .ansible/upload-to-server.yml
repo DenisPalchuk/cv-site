@@ -68,7 +68,8 @@
         cmd: >
           docker-compose run --rm --entrypoint 
           "certbot certonly --webroot -w /var/www/certbot 
-          --email {{ email }}  
+          --email {{ email }}
+          --no-eff-email 
           -d palchukdenis.com 
           --rsa-key-size 4096 
           --agree-tos 
