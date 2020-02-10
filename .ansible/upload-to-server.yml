@@ -39,13 +39,13 @@
     # Docker-compose module doesn't support adhoc running so it's just a workaround
     - name: Creating dummy certificate for palchukdenis.com
       shell:
-      cmd: >
-        docker-compose run --rm --entrypoint 
-        "openssl req -x509 -nodes -newkey rsa:1024 -days 1
-        -keyout '/etc/letsencrypt/live/palchukdenis.com/privkey.pem' 
-        -out '/etc/letsencrypt/live/palchukdenis.com/fullchain.pem' 
-        -subj '/CN=localhost'" certbot
-      chdir: ~/cv-site
+        cmd: >
+          docker-compose run --rm --entrypoint 
+          "openssl req -x509 -nodes -newkey rsa:1024 -days 1
+          -keyout '/etc/letsencrypt/live/palchukdenis.com/privkey.pem' 
+          -out '/etc/letsencrypt/live/palchukdenis.com/fullchain.pem' 
+          -subj '/CN=localhost'" certbot
+        chdir: ~/cv-site
 
     - name: Starting nginx
       docker_compose:
