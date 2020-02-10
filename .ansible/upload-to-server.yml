@@ -16,8 +16,7 @@
       git:
         repo: 'https://github.com/DenisPalchuk/cv-site.git'
         dest: ~/
-      
     
     - name: Run App container
-      docker-_compose:
+      docker_compose:
         project_src: ~/cv-site
