@@ -79,6 +79,7 @@
     - name: Reload nginx
       shell:
         cmd: docker-compose exec nginx nginx -s reload
+        chdir: ~/cv-site
           
 
 
