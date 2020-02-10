@@ -3,7 +3,9 @@
   tasks:
     - name: Install git and pip3
       apt:
-        name: git python3-pip
+        name: 
+          - git
+          - python3-pip
 
     - name: Install docker module to python
       pip:
