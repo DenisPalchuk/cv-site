@@ -14,11 +14,34 @@
         - docker-compose
         - requests>=2.20.1
 
+    - name: Remove prev version of application
+      file:
+        path: ~/cv-site
+        state: absent
+
     - name: clone repo from git
       git:
         repo: 'https://github.com/DenisPalchuk/cv-site.git'
         dest: ~/cv-site
-    
+        force: yes
+
+    - name: add executable rights for generating fake certs file
+      file:
+        path: ~/cv-site/init-letsencrypt.sh
+        mode: +x
+
+    - name: Start script for generating fake certs
+      shell: 
+        cmd: ~/cv-site/init-letsencrypt.sh
+        chdir: ~/cv-site
+
+    - name: Stop old nginx and let's encrypt container
+      docker_compose:
+        project_src: ~/cv-site
+        state: absent
+        stopped: yes
+
+
     - name: Run App container
       docker_compose:
         project_src: ~/cv-site
