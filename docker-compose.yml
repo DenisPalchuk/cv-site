@@ -9,6 +9,7 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./cv:/var/www/palchukdenis.com
+      - ./v2-site:/var/www/new.palchukdenis.com
       - ./letsencrypt/certbot/conf:/etc/letsencrypt
       - ./letsencrypt/certbot/www:/var/www/certbot
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
