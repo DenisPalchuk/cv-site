@@ -161,3 +161,69 @@
     text-align: center;
     color: white;
 }
+
+.about_me__epigraph {
+    margin-bottom: 40px;
+}
+
+.about_me__epigraph h1 {
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    line-height: 60px;
+    color: #2F2F2F;
+    margin-bottom: 10px;
+}
+
+.about_me__epigraph span {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: right;
+    color: #4B4453;
+}
+
+.about_me__info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 
+      "general photo"
+      "detailed photo";
+}
+
+.about_me__info__general {
+    grid-area: general;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 54px;
+    color: #4B4453;
+}
+
+.about_me__info__detailed {
+    grid-area: detailed;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 24px;
+    color: #4B4453;
+}
+
+.about_me__info__photo {
+    grid-area: photo;
+    justify-self: center;
+}
+
+.about_me__info__photo__mockup {
+    width: 463px;
+    height: 372px;
+    background: #EAEAEA;
+}
